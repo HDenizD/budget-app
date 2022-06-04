@@ -1,0 +1,15 @@
+// :root {
+//   --el-color-black: #141414;
+//   --el-color-white: #ffffff;
+//   --el-color-primary: #623cea;
+//   --el-color-success: #42b883;
+//   --el-color-warning: #ff1654;
+//   --el-color-primary-light-3: #623cea90;
+// }
+@forward 'element-plus/theme-chalk/src/common/var.scss' with (
+  $colors: (
+    'primary': (
+      'base': green,
+    ),
+  )
+);
