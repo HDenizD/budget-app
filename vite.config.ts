@@ -20,13 +20,13 @@ const pathSrc = path.resolve(__dirname, 'src')
 export default defineConfig({
   resolve: {
     alias: {
-      '~/': `${pathSrc}/`,
+      '@/': `${pathSrc}/`,
     },
   },
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@use "~/styles/element/index.scss" as *;`,
+        additionalData: `@use "@/styles/element/index.scss" as *;`,
       },
     },
   },

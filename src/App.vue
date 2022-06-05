@@ -1,16 +1,11 @@
 <template>
   <el-config-provider namespace="ep">
-    <BaseHeader />
-    <div style="display: flex">
-      <BaseSide />
-      <div>
-        <img alt="Vue logo" class="element-plus-logo" src="./assets/logo.png" />
-        <HelloWorld msg="Hello Vue 3.0 + Element Plus + Vite" />
-      </div>
-    </div>
+    <BaseLayout />
   </el-config-provider>
 </template>
-
+<script setup lang="ts">
+import BaseLayout from '@/pages/BaseLayout.vue'
+</script>
 <style>
 #app {
   text-align: center;
