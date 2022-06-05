@@ -6,26 +6,33 @@
         class="menu"
         mode="horizontal"
         :ellipsis="false"
+        router
         @select="handleSelect"
       >
-        <el-menu-item index="1">Dashboard</el-menu-item>
-        <el-menu-item index="2">User</el-menu-item>
+        <el-menu-item index="/dashboard">Dashboard</el-menu-item>
+        <el-menu-item index="/user">User</el-menu-item>
         <div class="flex-grow" />
         <el-menu-item index="3">Settings</el-menu-item>
       </el-menu>
     </el-header>
-    <el-main class="main">Main</el-main>
+    <el-main class="main">
+      <router-view />
+    </el-main>
   </el-container>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
-const activeIndex = ref('1')
+const activeIndex = ref('')
 
 const handleSelect = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
+  activeIndex.value = key
 }
+
+onMounted(() => {
+  activeIndex.value = location.pathname
+})
 </script>
 
 <style scoped lang="scss">
