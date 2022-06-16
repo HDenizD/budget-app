@@ -5,6 +5,8 @@
 </template>
 <script setup lang="ts">
 import BaseLayout from '@/pages/BaseLayout.vue'
+import { useAppStore } from './stores/appStore'
+const appStore = useAppStore()
 </script>
 <style>
 #app {
