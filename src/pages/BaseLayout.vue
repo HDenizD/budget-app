@@ -11,6 +11,7 @@
       >
         <el-menu-item index="/dashboard">Dashboard</el-menu-item>
         <el-menu-item index="/user">User</el-menu-item>
+        <el-menu-item index="/budget">Budget</el-menu-item>
         <div class="flex-grow" />
         <el-menu-item index="3">Settings</el-menu-item>
       </el-menu>

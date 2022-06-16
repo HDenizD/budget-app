@@ -1,5 +1,6 @@
 import Dashboard from '@/pages/Dashboard.vue';
 import User from '@/pages/User.vue';
+import Budget from '@/pages/Budget.vue';
 export const routes = [
   {
     path: '/dashboard',
@@ -10,5 +11,10 @@ export const routes = [
     path: '/user',
     name: 'user',
     component: User
+  },
+  {
+    path: '/budget',
+    name: 'budget',
+    component: Budget
   }
 ]
