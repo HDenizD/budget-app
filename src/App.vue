@@ -10,7 +10,7 @@ const appStore = useAppStore()
 </script>
 <style>
 #app {
-  zoom: 1.3;
+  zoom: 1.0;
   text-align: center;
   color: var(--ep-text-color-primary);
 }

@@ -6,7 +6,7 @@ type BudgetState = {
 
 export type Expense = {
   description: string;
-  amount: number;
+  amount: number | null;
 }
 
 
