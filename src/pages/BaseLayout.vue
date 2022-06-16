@@ -46,7 +46,6 @@ onMounted(() => {
     }
   }
   .main {
-    display: flex;
     --ep-main-padding: 20px;
   }
 }
