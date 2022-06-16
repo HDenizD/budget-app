@@ -2,14 +2,14 @@
   <add-expenses />
   <el-divider />
   <div>
-    <el-input
+    <!-- <el-input
       v-model="budgetData.salary"
       size="large"
       type="number"
       placeholder="Salery"
     >
       <template #append>€</template>
-    </el-input>
+    </el-input> -->
   </div>
 </template>
 
