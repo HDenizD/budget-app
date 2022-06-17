@@ -1,21 +1,13 @@
 <template>
   <add-expenses />
   <el-divider />
-  <div>
-    <!-- <el-input
-      v-model="budgetData.salary"
-      size="large"
-      type="number"
-      placeholder="Salery"
-    >
-      <template #append>€</template>
-    </el-input> -->
-  </div>
+  <display-expenses />
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 import AddExpenses from '@/components/AddExpenses.vue'
+import DisplayExpenses from '@/components/DisplayExpenses.vue'
 
 const budgetData = ref({
   salary: 0,

@@ -17,5 +17,9 @@ export const useBudgetStore = defineStore('budget', {
     } as BudgetState
   },
   getters: {},
-  actions: {}
+  actions: {
+    addExpense(payload: Expense) {
+      this.expenses.push(payload)
+    }
+  }
 })
