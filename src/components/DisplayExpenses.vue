@@ -23,14 +23,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useBudgetStore } from '@/stores/budgetStore'
-import {
-  Check,
-  Delete,
-  Edit,
-  Message,
-  Search,
-  Star,
-} from '@element-plus/icons-vue'
+
 
 const budgetStore = useBudgetStore()
 </script>
