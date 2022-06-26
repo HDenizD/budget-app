@@ -1,29 +1,15 @@
 <template>
-  <div>
-    <el-card
-      v-for="(item, index) in budgetStore.expenses"
-      :key="index"
-      class="box-card"
-    >
-      <div class="flex items-center justify-between">
-        <div class="text item">{{ item.description }}: {{ item.amount }}</div>
-        <div>
-          <el-button type="yellow" size="large" :icon="Edit" ></el-button>
-          <el-button
-            type="danger"
-            size="large"
-            :icon="Delete"
-          ></el-button>
-        </div>
-      </div>
-    </el-card>
-  </div>
+  <expense-item
+    v-for="(item, index) in budgetStore.expenses"
+    :key="index"
+    :expense="item"
+  />
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import ExpenseItem from '@/components/ExpanseItem.vue'
 import { useBudgetStore } from '@/stores/budgetStore'
-
 
 const budgetStore = useBudgetStore()
 </script>

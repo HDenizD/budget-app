@@ -18,22 +18,31 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import type { Expense } from '@/stores/budgetStore'
 import { useBudgetStore } from '@/stores/budgetStore'
+import { v4 as uuidv4 } from 'uuid'
 
 const budgetStore = useBudgetStore()
 
 const expense = ref<Expense>({
   description: '',
   amount: null,
+  id: '',
+})
+
+const isDescriptionAndAmountNotSet = computed(() => {
+  return expense.value.description === '' && expense.value.amount === null
 })
 
 function addExpense() {
+  if (isDescriptionAndAmountNotSet.value) return
+  expense.value.id = uuidv4()
   budgetStore.addExpense(expense.value)
   expense.value = {
     description: '',
     amount: null,
+    id: '',
   }
 }
 </script>

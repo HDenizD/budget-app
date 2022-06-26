@@ -47,6 +47,10 @@ onMounted(() => {
   }
   .main {
     --ep-main-padding: 20px;
+    max-width: 1000px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 </style>

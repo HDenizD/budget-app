@@ -1,11 +1,9 @@
 <template>
-  <el-card
-    v-for="(item, index) in expenses"
-    :key="index"
-    class="box-card"
-  >
+  <el-card class="box-card">
     <div class="flex items-center justify-between">
-      <div class="text item">{{ item.description }}: {{ item.amount }}</div>
+      <div class="text item">
+        {{ expense.description }}: {{ expense.amount }}
+      </div>
       <div>
         <el-button type="yellow" size="large" :icon="Edit"></el-button>
         <el-button type="danger" size="large" :icon="Delete"></el-button>
@@ -27,9 +25,14 @@ import { PropType } from 'vue'
 import type { Expense } from '@/stores/budgetStore'
 
 defineProps({
-  expenses: {
-    type: Array as PropType<Expense[]>,
-    default: () => [],
+  expense: {
+    type: Object as PropType<Expense>,
+    default: () => {
+      return {
+        description: 'UNKNOWN',
+        amount: 0,
+      }
+    },
   },
 })
 </script>
