@@ -5,8 +5,18 @@
         {{ expense.description }}: {{ expense.amount }}
       </div>
       <div>
-        <el-button type="yellow" size="large" :icon="Edit"></el-button>
-        <el-button type="danger" size="large" :icon="Delete"></el-button>
+        <el-button
+          type="warning"
+          size="large"
+          :icon="Edit"
+          @click="isEditMode = true"
+        ></el-button>
+        <el-button
+          type="danger"
+          size="large"
+          :icon="Delete"
+          @click="budgetStore.deleteExpense(expense.id)"
+        ></el-button>
       </div>
     </div>
   </el-card>
@@ -21,8 +31,9 @@ import {
   Search,
   Star,
 } from '@element-plus/icons-vue'
-import { PropType } from 'vue'
+import { PropType, ref } from 'vue'
 import type { Expense } from '@/stores/budgetStore'
+import { useBudgetStore } from '@/stores/budgetStore'
 
 defineProps({
   expense: {
@@ -31,10 +42,14 @@ defineProps({
       return {
         description: 'UNKNOWN',
         amount: 0,
+        id: 'noUUID',
       }
     },
   },
 })
+
+const budgetStore = useBudgetStore()
+const isEditMode = ref(false)
 </script>
 
 <style lang="scss" scoped></style>

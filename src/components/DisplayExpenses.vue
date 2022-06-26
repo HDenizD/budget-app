@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import ExpenseItem from '@/components/ExpanseItem.vue'
+import ExpenseItem from '@/components/ExpenseItem.vue'
 import { useBudgetStore } from '@/stores/budgetStore'
 
 const budgetStore = useBudgetStore()

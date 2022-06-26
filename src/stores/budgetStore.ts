@@ -21,6 +21,13 @@ export const useBudgetStore = defineStore('budget', {
   actions: {
     addExpense(payload: Expense) {
       this.expenses.push(payload)
+    },
+    updateExpense(payload: Expense) {
+
+    },
+    deleteExpense(expenseId: string) {
+      const index = this.expenses.findIndex(expense => expense.id === expenseId)
+      this.expenses.splice(index, 1)
     }
   }
 })
