@@ -6,11 +6,16 @@
 <script setup lang="ts">
 import BaseLayout from '@/pages/BaseLayout.vue'
 import { useAppStore } from './stores/appStore'
+import { app, database } from './firebase'
 const appStore = useAppStore()
+
+// console.log(app, analytics)
+console.log(app)
+console.log(database)
 </script>
 <style>
 #app {
-  zoom: 1.0;
+  zoom: 1;
   color: var(--ep-text-color-primary);
 }
 
