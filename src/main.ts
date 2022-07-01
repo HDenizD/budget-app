@@ -12,6 +12,8 @@ import { routes } from './router/routes'
 
 // or use cdn, uncomment cdn link in `index.html`
 
+import 'element-plus/theme-chalk/dark/css-vars.css'
+
 import "@/styles/index.scss";
 import 'uno.css'
 
