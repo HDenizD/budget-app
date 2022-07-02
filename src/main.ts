@@ -1,7 +1,22 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import PrimeVue from 'primevue/config';
 import { router } from './router'
 
+import { primeVueComponents } from 'src/components/primevue';
+
+import 'primevue/resources/themes/lara-dark-blue/theme.css';
+import 'primevue/resources/primevue.min.css';
+import 'primeicons/primeicons.css';
+import 'src/scss/index.scss'
+
 const app = createApp(App)
+
+app.use(PrimeVue);
+
+for (const item of primeVueComponents) {
+  app.component(item.name, item.component);
+}
+
 app.use(router)
 app.mount('#app')
