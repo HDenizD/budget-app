@@ -1,25 +1,21 @@
-<template>
-  <el-config-provider namespace="ep">
-    <BaseLayout />
-  </el-config-provider>
-</template>
 <script setup lang="ts">
-import BaseLayout from '@/pages/BaseLayout.vue'
-import { useAppStore } from './stores/appStore'
-import { app, database } from './firebase'
-const appStore = useAppStore()
-
-// console.log(app, analytics)
-console.log(app)
-console.log(database)
+// This starter template is using Vue 3 <script setup> SFCs
+// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
+import HelloWorld from './components/HelloWorld.vue'
 </script>
+
+<template>
+  <img alt="Vue logo" src="./assets/logo.png" />
+  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+</template>
+
 <style>
 #app {
-  zoom: 1;
-  color: var(--ep-text-color-primary);
-}
-
-.element-plus-logo {
-  width: 50%;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
 }
 </style>
