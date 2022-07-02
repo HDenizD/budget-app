@@ -1,4 +1,5 @@
 <template>
+  <menu-bar />
   <p-button>Test</p-button>
   <p-card>
     <template #title> Advanced Card </template>
@@ -11,6 +12,8 @@
   </p-card>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import MenuBar from '@/components/MenuBar.vue'
+</script>
 
 <style scoped></style>
