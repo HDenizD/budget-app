@@ -9,6 +9,7 @@
       />
     </template>
     <template #item="{ item }">
+      <!-- TODO: ripple not working -->
       <div class="p-menuitem p-ripple" v-ripple>
         <router-link
           :to="item.to ?? ''"
