@@ -1,6 +1,7 @@
 import Button from "primevue/button";
 import Card from "primevue/card";
 import Menubar from "primevue/menubar";
+import TabMenu from "primevue/tabmenu";
 
 type PrimeVueComponents = {
   name: string;
@@ -19,3 +20,4 @@ export const primeVueComponents: PrimeVueComponents = [];
 installPrimeVueComponent("p-button", Button);
 installPrimeVueComponent("p-card", Card);
 installPrimeVueComponent("p-menubar", Menubar);
+installPrimeVueComponent("p-tab-menu", TabMenu);

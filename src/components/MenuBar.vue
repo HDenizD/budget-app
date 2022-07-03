@@ -8,137 +8,89 @@
         class="mr-2"
       />
     </template>
-    <!-- <template #end>
-      <InputText placeholder="Search" type="text" />
-    </template> -->
+    <template #item="{ item }">
+      <div class="p-menuitem p-ripple" v-ripple>
+        <router-link
+          :to="item.to ?? ''"
+          class="p-menuitem-link gap-1 border-round"
+          role="menuitem"
+        >
+          <i
+            v-if="item.icon"
+            class="material-icons"
+            :class="isActive(item.to) ? 'text-primary' : ''"
+          >
+            {{ item.icon }}
+          </i>
+          <span
+            v-if="item.label"
+            class="p-menuitem-text"
+            :class="isActive(item.to) ? 'text-primary' : ''"
+          >
+            {{ item.label }}
+          </span>
+        </router-link>
+      </div>
+    </template>
   </p-menubar>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-const items = ref([
+import { MenuItem } from 'primevue/menuitem'
+import { ref, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
+import MenubarItem from './MenubarItem.vue'
+
+const route = useRoute()
+
+const isMobileMode = ref()
+const items = ref<MenuItem[]>([
   {
-    label: 'File',
-    icon: 'pi pi-fw pi-file',
-    items: [
-      {
-        label: 'New',
-        icon: 'pi pi-fw pi-plus',
-        items: [
-          {
-            label: 'Bookmark',
-            icon: 'pi pi-fw pi-bookmark',
-          },
-          {
-            label: 'Video',
-            icon: 'pi pi-fw pi-video',
-          },
-        ],
-      },
-      {
-        label: 'Delete',
-        icon: 'pi pi-fw pi-trash',
-      },
-      {
-        separator: true,
-      },
-      {
-        label: 'Export',
-        icon: 'pi pi-fw pi-external-link',
-      },
-    ],
+    label: 'Dashboard',
+    icon: 'dashboard',
+    to: '/',
   },
   {
-    label: 'Edit',
-    icon: 'pi pi-fw pi-pencil',
-    items: [
-      {
-        label: 'Left',
-        icon: 'pi pi-fw pi-align-left',
-      },
-      {
-        label: 'Right',
-        icon: 'pi pi-fw pi-align-right',
-      },
-      {
-        label: 'Center',
-        icon: 'pi pi-fw pi-align-center',
-      },
-      {
-        label: 'Justify',
-        icon: 'pi pi-fw pi-align-justify',
-      },
-    ],
+    label: 'Statistics',
+    icon: 'analytics',
+    to: '/statistics',
   },
   {
-    label: 'Users',
-    icon: 'pi pi-fw pi-user',
-    items: [
-      {
-        label: 'New',
-        icon: 'pi pi-fw pi-user-plus',
-      },
-      {
-        label: 'Delete',
-        icon: 'pi pi-fw pi-user-minus',
-      },
-      {
-        label: 'Search',
-        icon: 'pi pi-fw pi-users',
-        items: [
-          {
-            label: 'Filter',
-            icon: 'pi pi-fw pi-filter',
-            items: [
-              {
-                label: 'Print',
-                icon: 'pi pi-fw pi-print',
-              },
-            ],
-          },
-          {
-            icon: 'pi pi-fw pi-bars',
-            label: 'List',
-          },
-        ],
-      },
-    ],
+    label: 'Settings',
+    icon: 'settings',
+    to: '/settings',
   },
   {
-    label: 'Events',
-    icon: 'pi pi-fw pi-calendar',
-    items: [
-      {
-        label: 'Edit',
-        icon: 'pi pi-fw pi-pencil',
-        items: [
-          {
-            label: 'Save',
-            icon: 'pi pi-fw pi-calendar-plus',
-          },
-          {
-            label: 'Delete',
-            icon: 'pi pi-fw pi-calendar-minus',
-          },
-        ],
-      },
-      {
-        label: 'Archieve',
-        icon: 'pi pi-fw pi-calendar-times',
-        items: [
-          {
-            label: 'Remove',
-            icon: 'pi pi-fw pi-calendar-minus',
-          },
-        ],
-      },
-    ],
+    label: 'Logout',
+    icon: 'logout',
+    visible: () => isMobileMode.value,
   },
   {
-    label: 'Quit',
-    icon: 'pi pi-fw pi-power-off',
+    label: 'Logout',
+    icon: 'logout',
+    visible: () => !isMobileMode.value,
+    style: 'position: absolute; right: 15px;',
   },
 ])
+
+function handleMenubarMobileMode() {
+  if (window.innerWidth <= 960) {
+    isMobileMode.value = true
+  } else {
+    isMobileMode.value = false
+  }
+}
+
+function isActive(to: string) {
+  return to === route.fullPath
+}
+
+onMounted(() => {
+  handleMenubarMobileMode()
+  window.onresize = () => {
+    handleMenubarMobileMode()
+  }
+})
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped></style>
