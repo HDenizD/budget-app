@@ -3,6 +3,8 @@ import Card from "primevue/card";
 import Menubar from "primevue/menubar";
 import TabMenu from "primevue/tabmenu";
 import InputText from "primevue/inputtext";
+import Checkbox from 'primevue/checkbox';
+
 
 type PrimeVueComponents = {
   name: string;
@@ -23,3 +25,4 @@ installPrimeVueComponent("p-card", Card);
 installPrimeVueComponent("p-menubar", Menubar);
 installPrimeVueComponent("p-tab-menu", TabMenu);
 installPrimeVueComponent("p-input-text", InputText);
+installPrimeVueComponent("p-checkbox", Checkbox);
