@@ -74,6 +74,7 @@
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuth } from '@/stores'
+import { resolve } from 'path'
 
 const router = useRouter()
 const authStore = useAuth()
@@ -96,25 +97,33 @@ const isPasswordEmpty = computed(() => {
   return loginCredentials.value.password.length === 0
 })
 
+function validate() {
+  return new Promise((resolve) => {
+    if (isUsernameEmpty.value && isPasswordEmpty.value) {
+      validator.value.username = true
+      validator.value.password = true
+      return
+    }
+    if (isUsernameEmpty.value) {
+      validator.value.username = true
+      return
+    }
+    if (isPasswordEmpty.value) {
+      validator.value.password = true
+      return
+    }
+    resolve(true)
+  })
+}
+
 function login() {
-  if (isUsernameEmpty.value && isPasswordEmpty.value) {
-    validator.value.username = true
-    validator.value.password = true
-    return
-  }
-  if (isUsernameEmpty.value) {
-    validator.value.username = true
-    return
-  }
-  if (isPasswordEmpty.value) {
-    validator.value.password = true
-    return
-  }
-  authStore.login(
-    loginCredentials.value.username,
-    loginCredentials.value.password,
-    loginCredentials.value.keepMeLoggedIn
-  )
+  validate().then(() => {
+    authStore.login(
+      loginCredentials.value.username,
+      loginCredentials.value.password,
+      loginCredentials.value.keepMeLoggedIn
+    )
+  })
 }
 </script>
 
