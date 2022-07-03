@@ -39,7 +39,6 @@
 import { MenuItem } from 'primevue/menuitem'
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
-import MenubarItem from './MenubarItem.vue'
 
 const route = useRoute()
 
