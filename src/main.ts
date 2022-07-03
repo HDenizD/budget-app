@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import { createPinia } from 'pinia'
 import App from './App.vue'
 import PrimeVue from 'primevue/config';
 import { router } from './router'
@@ -12,6 +13,7 @@ import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css'
 import '@/scss/index.scss'
 
+const pinia = createPinia()
 const app = createApp(App)
 
 
@@ -22,5 +24,6 @@ for (const item of primeVueComponents) {
   app.component(item.name, item.component);
 }
 
+app.use(pinia)
 app.use(router)
 app.mount('#app')

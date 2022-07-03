@@ -2,6 +2,7 @@ import Button from "primevue/button";
 import Card from "primevue/card";
 import Menubar from "primevue/menubar";
 import TabMenu from "primevue/tabmenu";
+import InputText from "primevue/inputtext";
 
 type PrimeVueComponents = {
   name: string;
@@ -21,3 +22,4 @@ installPrimeVueComponent("p-button", Button);
 installPrimeVueComponent("p-card", Card);
 installPrimeVueComponent("p-menubar", Menubar);
 installPrimeVueComponent("p-tab-menu", TabMenu);
+installPrimeVueComponent("p-input-text", InputText);

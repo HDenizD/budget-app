@@ -1,12 +1,20 @@
 <template>
   <menubar />
-  <div class="main">
+  <div v-if="authStore.isLoggedIn" class="main">
     <router-view />
+  </div>
+  <div v-else class="main">
+    <login />
   </div>
 </template>
 
 <script setup lang="ts">
+import { useAuth } from './stores'
+import Login from '@/pages/Login.vue'
 import Menubar from '@/components/Menubar.vue'
+
+const authStore = useAuth()
+console.log(authStore.isLoggedIn)
 </script>
 
 <style lang="scss">

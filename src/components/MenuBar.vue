@@ -37,14 +37,13 @@
 </template>
 
 <script setup lang="ts">
-import { MenuItem } from 'primevue/menuitem'
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
 
 const isMobileMode = ref()
-const items = ref<MenuItem[]>([
+const items = ref([
   {
     label: 'Dashboard',
     icon: 'dashboard',
