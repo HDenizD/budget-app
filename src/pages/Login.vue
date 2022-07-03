@@ -31,7 +31,17 @@
           />
           <label for="keepMeLoggedIn">Keep me logged in</label>
         </div>
-        <p-button class="w-full mt-2 p-button-success" label="Login" />
+        <p-button
+          class="w-full mt-2 p-button-success"
+          label="Login"
+          @click="
+            authStore.login(
+              loginCredentials.username,
+              loginCredentials.password,
+              loginCredentials.keepMeLoggedIn
+            )
+          "
+        />
       </div>
     </template>
     <template #footer>
@@ -54,8 +64,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useAuth } from '@/stores'
 
 const router = useRouter()
+const authStore = useAuth()
 
 const loginCredentials = ref({
   username: '',

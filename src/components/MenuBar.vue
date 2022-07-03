@@ -15,6 +15,7 @@
           :to="item.to ?? ''"
           class="p-menuitem-link gap-1 border-round"
           role="menuitem"
+          @click="item.command"
         >
           <i
             v-if="item.icon"
@@ -39,8 +40,10 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
+import { useAuth } from './../stores'
 
 const route = useRoute()
+const authStore = useAuth()
 
 const isMobileMode = ref()
 const items = ref([
@@ -48,27 +51,55 @@ const items = ref([
     label: 'Dashboard',
     icon: 'dashboard',
     to: '/',
+    visible: () => authStore.isLoggedIn,
   },
   {
     label: 'Statistics',
     icon: 'analytics',
     to: '/statistics',
+    visible: () => authStore.isLoggedIn,
   },
   {
     label: 'Settings',
     icon: 'settings',
     to: '/settings',
+    visible: () => authStore.isLoggedIn,
   },
   {
-    label: 'Logout',
-    icon: 'logout',
-    visible: () => isMobileMode.value,
+    label: 'Imprint',
+    icon: 'contact_mail',
+    to: '/imprint',
   },
   {
-    label: 'Logout',
-    icon: 'logout',
-    visible: () => !isMobileMode.value,
+    label: 'Privacy Policy',
+    icon: 'shield',
+    to: '/privacy-policy',
+  },
+  {
+    label: 'Login',
+    icon: 'login',
     style: 'position: absolute; right: 15px;',
+    visible: () => !isMobileMode.value && !authStore.isLoggedIn,
+    to: '/login',
+  },
+  {
+    label: 'Login',
+    icon: 'logout',
+    visible: () => isMobileMode.value && !authStore.isLoggedIn,
+    to: '/login',
+  },
+  {
+    label: 'Logout',
+    icon: 'logout',
+    visible: () => isMobileMode.value && authStore.isLoggedIn,
+    command: () => authStore.logout(),
+  },
+  {
+    label: 'Logout',
+    icon: 'logout',
+    visible: () => !isMobileMode.value && authStore.isLoggedIn,
+    style: 'position: absolute; right: 15px;',
+    command: () => authStore.logout(),
   },
 ])
 
