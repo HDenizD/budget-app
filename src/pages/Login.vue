@@ -74,7 +74,6 @@
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuth } from '@/stores'
-import { resolve } from 'path'
 
 const router = useRouter()
 const authStore = useAuth()
