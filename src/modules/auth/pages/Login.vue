@@ -7,16 +7,17 @@
       </div>
     </template>
     <template #content>
+      <!-- TODO: make a wrapper input component, with validation etc. -->
       <p-input-text
         v-model="loginCredentials.username"
         class="w-full my-2"
-        :class="validator.username ? 'p-invalid' : ''"
+        :class="authValidator.isInvalidUsername ? 'p-invalid' : ''"
         placeholder="Username"
         type="username"
-        @input="validator.username = false"
+        @input="authValidator.isInvalidUsername = false"
       />
       <small
-        v-if="validator.username"
+        v-if="authValidator.isInvalidUsername"
         id="username2-help"
         class="p-error scalein animation-duration-500 block pb-2"
       >
@@ -25,14 +26,14 @@
       <p-input-text
         v-model="loginCredentials.password"
         class="w-full my-2"
-        :class="validator.password ? 'p-invalid' : ''"
+        :class="authValidator.isInvalidPassword ? 'p-invalid' : ''"
         placeholder="Password"
         type="password"
-        @input="validator.password = false"
+        @input="authValidator.isInvalidPassword = false"
         @keyup.enter="login"
       />
       <small
-        v-if="validator.password"
+        v-if="authValidator.isInvalidPassword"
         id="username2-help"
         class="p-error scalein animation-duration-500 block pb-2"
       >
@@ -75,14 +76,10 @@
 import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuth } from '@/stores'
+import { authValidator } from '@/utils/form/validators'
 
 const router = useRouter()
 const authStore = useAuth()
-
-const validator = ref({
-  username: false,
-  password: false,
-})
 
 const loginCredentials = ref({
   username: '',
@@ -100,16 +97,16 @@ const isPasswordEmpty = computed(() => {
 function validate() {
   return new Promise((resolve) => {
     if (isUsernameEmpty.value && isPasswordEmpty.value) {
-      validator.value.username = true
-      validator.value.password = true
+      authValidator.value.isInvalidUsername = true
+      authValidator.value.isInvalidPassword = true
       return
     }
     if (isUsernameEmpty.value) {
-      validator.value.username = true
+      authValidator.value.isInvalidUsername = true
       return
     }
     if (isPasswordEmpty.value) {
-      validator.value.password = true
+      authValidator.value.isInvalidPassword = true
       return
     }
     resolve(true)
