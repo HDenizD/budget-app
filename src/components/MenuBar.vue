@@ -51,7 +51,7 @@ const items = ref([
   {
     label: 'Dashboard',
     icon: 'dashboard',
-    to: '/',
+    to: '/dashboard',
     visible: () => authStore.isLoggedIn,
   },
   {
@@ -81,13 +81,13 @@ const items = ref([
     icon: 'login',
     style: 'position: absolute; right: 15px;',
     visible: () => !isMobileMode.value && !authStore.isLoggedIn,
-    to: '/login',
+    to: '/',
   },
   {
     label: 'Login',
     icon: 'logout',
     visible: () => isMobileMode.value && !authStore.isLoggedIn,
-    to: '/login',
+    to: '/',
   },
   {
     label: 'Logout',
@@ -95,7 +95,7 @@ const items = ref([
     visible: () => isMobileMode.value && authStore.isLoggedIn,
     command: () => {
       authStore.logout()
-      router.push('/login')
+      router.push('/')
     },
   },
   {
@@ -105,7 +105,7 @@ const items = ref([
     style: 'position: absolute; right: 15px;',
     command: () => {
       authStore.logout()
-      router.push('/login')
+      router.push('/')
     },
   },
 ])

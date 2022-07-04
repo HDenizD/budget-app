@@ -5,12 +5,18 @@ import { RouteRecordRaw } from 'vue-router'
 
 export const authRoutes: RouteRecordRaw[] = [
   {
-    path: '/login',
+    path: '/',
+    meta: { requiresAuth: false },
     components: { auth: Login },
   },
   {
     path: '/forgot-password',
+    meta: { requiresAuth: false },
     components: { auth: PasswordForgot },
   },
-  { path: '/register', components: { auth: Register } },
+  {
+    path: '/register',
+    meta: { requiresAuth: false },
+    components: { auth: Register },
+  },
 ]

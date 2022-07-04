@@ -17,11 +17,11 @@ import { onMounted } from 'vue'
 const router = useRouter()
 const authStore = useAuth()
 
-onMounted(() => {
-  if (!authStore.isLoggedIn) {
-    router.push('/login')
-  }
-})
+// onMounted(() => {
+//   if (!authStore.isLoggedIn) {
+//     router.push('/login')
+//   }
+// })
 </script>
 
 <style lang="scss">

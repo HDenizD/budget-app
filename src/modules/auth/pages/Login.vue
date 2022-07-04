@@ -72,7 +72,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuth } from '@/stores'
 
@@ -123,7 +123,7 @@ function login() {
       loginCredentials.value.password,
       loginCredentials.value.keepMeLoggedIn
     )
-    router.push('/')
+    router.push('/dashboard')
   })
 }
 </script>
