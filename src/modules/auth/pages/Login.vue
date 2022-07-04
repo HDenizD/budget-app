@@ -123,6 +123,7 @@ function login() {
       loginCredentials.value.password,
       loginCredentials.value.keepMeLoggedIn
     )
+    router.push('/')
   })
 }
 </script>

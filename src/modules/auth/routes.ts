@@ -6,11 +6,11 @@ import { RouteRecordRaw } from 'vue-router'
 export const authRoutes: RouteRecordRaw[] = [
   {
     path: '/login',
-    component: { auth: Login },
+    components: { auth: Login },
   },
   {
     path: '/forgot-password',
-    component: { auth: PasswordForgot },
+    components: { auth: PasswordForgot },
   },
-  { path: '/register', component: { auth: Register } },
+  { path: '/register', components: { auth: Register } },
 ]

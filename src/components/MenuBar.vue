@@ -39,10 +39,11 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useAuth } from '@/stores'
 
 const route = useRoute()
+const router = useRouter()
 const authStore = useAuth()
 
 const isMobileMode = ref()
@@ -92,14 +93,20 @@ const items = ref([
     label: 'Logout',
     icon: 'logout',
     visible: () => isMobileMode.value && authStore.isLoggedIn,
-    command: () => authStore.logout(),
+    command: () => {
+      authStore.logout()
+      router.push('/login')
+    },
   },
   {
     label: 'Logout',
     icon: 'logout',
     visible: () => !isMobileMode.value && authStore.isLoggedIn,
     style: 'position: absolute; right: 15px;',
-    command: () => authStore.logout(),
+    command: () => {
+      authStore.logout()
+      router.push('/login')
+    },
   },
 ])
 

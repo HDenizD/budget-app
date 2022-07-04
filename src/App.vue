@@ -4,17 +4,24 @@
     <router-view />
   </div>
   <div v-else class="main">
-  <router-view name="auth" />
-    <!-- <login /> -->
+    <router-view name="auth" />
   </div>
 </template>
 
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
 import { useAuth } from './stores'
-// import Login from '@/modules/auth/pages/Login.vue'
 import Menubar from '@/components/Menubar.vue'
+import { onMounted } from 'vue'
 
+const router = useRouter()
 const authStore = useAuth()
+
+onMounted(() => {
+  if (!authStore.isLoggedIn) {
+    router.push('/login')
+  }
+})
 </script>
 
 <style lang="scss">
