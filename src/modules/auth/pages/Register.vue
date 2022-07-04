@@ -75,7 +75,8 @@
       >
         Username cannot be empty
       </small>
-      <small
+      <!-- TODO: need a good validation -->
+      <!-- <small
         v-if="
           registerCredentials.confirmPassword.length !== 0 &&
           !authValidator.isPasswordAndConfirmPasswordIsSame
@@ -84,7 +85,7 @@
         class="p-error scalein animation-duration-500 block pb-2"
       >
         Passwords not same!
-      </small>
+      </small> -->
       <!-- <div class="field-checkbox my-2">
         <p-checkbox id="acceptTerms" binary />
         <label for="keepMeLoggedIn" class="cursor-pointer select-none">
