@@ -25,6 +25,7 @@
       >
         Username cannot be empty
       </small>
+
       <p-input-text
         v-model="registerCredentials.email"
         :class="authValidator.isInvalidEmail ? 'p-invalid' : ''"
@@ -40,12 +41,15 @@
       >
         Username cannot be empty
       </small>
-      <p-input-text
+
+      <p-password
         v-model="registerCredentials.password"
+        class="w-full"
         :class="authValidator.isInvalidPassword ? 'p-invalid' : ''"
-        class="w-full my-2"
-        type="password"
+        inputClass="w-full my-2"
         placeholder="Password"
+        toggleMask
+        panelClass="password-panel"
         @input="authValidator.isInvalidPassword = false"
       />
       <small
@@ -55,6 +59,7 @@
       >
         Username cannot be empty
       </small>
+
       <p-input-text
         v-model="registerCredentials.confirmPassword"
         :class="authValidator.isInvalidConfirmPassword ? 'p-invalid' : ''"
@@ -69,6 +74,16 @@
         class="p-error scalein animation-duration-500 block pb-2"
       >
         Username cannot be empty
+      </small>
+      <small
+        v-if="
+          registerCredentials.confirmPassword.length !== 0 &&
+          !authValidator.isPasswordAndConfirmPasswordIsSame
+        "
+        id="username2-help"
+        class="p-error scalein animation-duration-500 block pb-2"
+      >
+        Passwords not same!
       </small>
       <!-- <div class="field-checkbox my-2">
         <p-checkbox id="acceptTerms" binary />
@@ -89,7 +104,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { authValidator } from '@/utils/form/validators'
+import {
+  authValidator,
+  checkPasswordAndConfirmPasswordIsSame,
+} from '@/utils/form/validators'
 const router = useRouter()
 
 const registerCredentials = ref({
@@ -100,11 +118,20 @@ const registerCredentials = ref({
 })
 
 function register() {
-  authValidator.value.isInvalidUsername = true
-  authValidator.value.isInvalidEmail = true
-  authValidator.value.isInvalidPassword = true
-  authValidator.value.isInvalidConfirmPassword = true
+  checkPasswordAndConfirmPasswordIsSame(
+    registerCredentials.value.password,
+    registerCredentials.value.confirmPassword
+  )
+  // authValidator.value.isInvalidUsername = true
+  // authValidator.value.isInvalidEmail = true
+  // authValidator.value.isInvalidPassword = true
+  // authValidator.value.isInvalidConfirmPassword = true
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.password-panel {
+  top: 200px;
+  position: relative;
+}
+</style>
