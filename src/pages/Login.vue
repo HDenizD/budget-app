@@ -29,6 +29,7 @@
         placeholder="Password"
         type="password"
         @input="validator.password = false"
+        @keyup.enter="login"
       />
       <small
         v-if="validator.password"
