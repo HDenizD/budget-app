@@ -4,17 +4,17 @@
     <router-view />
   </div>
   <div v-else class="main">
-    <login />
+  <router-view name="auth" />
+    <!-- <login /> -->
   </div>
 </template>
 
 <script setup lang="ts">
 import { useAuth } from './stores'
-import Login from '@/pages/Login.vue'
+import Login from '@/modules/auth/pages/Login.vue'
 import Menubar from '@/components/Menubar.vue'
 
 const authStore = useAuth()
-console.log(authStore.isLoggedIn)
 </script>
 
 <style lang="scss">
