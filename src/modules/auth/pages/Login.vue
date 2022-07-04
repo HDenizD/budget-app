@@ -58,12 +58,12 @@
       <div class="flex justify-content-between">
         <p-button
           label="Forgot password?"
-          class="p-button-secondary p-button-text"
+          class="p-button-secondary text-sm p-button-text"
           @click="router.push('/forgot-password')"
         />
         <p-button
           label="Register"
-          class="p-button-secondary p-button-text"
+          class="p-button-secondary text-sm p-button-text"
           @click="router.push('/register')"
         />
       </div>
