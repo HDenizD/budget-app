@@ -11,7 +11,7 @@
 
 <script setup lang="ts">
 import { useAuth } from './stores'
-import Login from '@/modules/auth/pages/Login.vue'
+// import Login from '@/modules/auth/pages/Login.vue'
 import Menubar from '@/components/Menubar.vue'
 
 const authStore = useAuth()
