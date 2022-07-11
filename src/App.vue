@@ -14,10 +14,11 @@ import { useAuth } from './stores'
 import Menubar from '@/components/Menubar.vue'
 
 const authStore = useAuth()
-const authChecked = ref(false)
+const authCheckDone = ref(false)
 
 onMounted(() => {
   authStore.authCheck()
+  authCheckDone.value = true
 })
 </script>
 
