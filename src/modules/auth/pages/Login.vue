@@ -123,9 +123,6 @@ function login() {
     router.push('/dashboard')
   })
 }
-onMounted(() => {
-  authStore.auth()
-})
 </script>
 
 <style lang="scss" scoped></style>

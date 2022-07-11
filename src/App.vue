@@ -9,10 +9,16 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted, ref } from 'vue'
 import { useAuth } from './stores'
 import Menubar from '@/components/Menubar.vue'
 
 const authStore = useAuth()
+const authChecked = ref(false)
+
+onMounted(() => {
+  authStore.authCheck()
+})
 </script>
 
 <style lang="scss">
