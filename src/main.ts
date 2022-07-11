@@ -1,29 +1,31 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import App from './App.vue'
-import PrimeVue from 'primevue/config';
+import PrimeVue from 'primevue/config'
 import { router } from './router'
+import { initializeApp, getApp } from 'firebase/app'
+import { firebaseConfig } from './firebase'
 
-import { primeVueComponents } from '@/components/primevue';
-import Ripple from 'primevue/ripple';
+import { primeVueComponents } from '@/components/primevue'
+import Ripple from 'primevue/ripple'
 
-import 'primevue/resources/themes/lara-dark-blue/theme.css';
-import 'primevue/resources/primevue.min.css';
-import 'primeicons/primeicons.css';
+import 'primevue/resources/themes/lara-dark-blue/theme.css'
+import 'primevue/resources/primevue.min.css'
+import 'primeicons/primeicons.css'
 import 'primeflex/primeflex.css'
 import '@/scss/index.scss'
 
 const pinia = createPinia()
 const app = createApp(App)
 
-
-app.use(PrimeVue, { ripple: true });
+app.use(PrimeVue, { ripple: true })
 app.directive('ripple', Ripple)
 
 for (const item of primeVueComponents) {
-  app.component(item.name, item.component);
+  app.component(item.name, item.component)
 }
 
+initializeApp(firebaseConfig)
 app.use(pinia)
 app.use(router)
 app.mount('#app')

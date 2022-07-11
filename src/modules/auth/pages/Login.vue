@@ -82,8 +82,8 @@ const router = useRouter()
 const authStore = useAuth()
 
 const loginCredentials = ref({
-  username: '',
-  password: '',
+  username: 'test@lala.de',
+  password: 'test1234',
   keepMeLoggedIn: false,
 })
 
@@ -123,6 +123,9 @@ function login() {
     router.push('/dashboard')
   })
 }
+onMounted(() => {
+  authStore.auth()
+})
 </script>
 
 <style lang="scss" scoped></style>

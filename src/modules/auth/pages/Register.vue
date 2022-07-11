@@ -105,11 +105,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useAuth } from '@/stores'
 import {
   authValidator,
   checkPasswordAndConfirmPasswordIsSame,
 } from '@/utils/form/validators'
 const router = useRouter()
+const authStore = useAuth()
 
 const registerCredentials = ref({
   username: '',
@@ -119,10 +121,11 @@ const registerCredentials = ref({
 })
 
 function register() {
-  checkPasswordAndConfirmPasswordIsSame(
-    registerCredentials.value.password,
-    registerCredentials.value.confirmPassword
-  )
+  authStore.register()
+  // checkPasswordAndConfirmPasswordIsSame(
+  //   registerCredentials.value.password,
+  //   registerCredentials.value.confirmPassword
+  // )
   // authValidator.value.isInvalidUsername = true
   // authValidator.value.isInvalidEmail = true
   // authValidator.value.isInvalidPassword = true
