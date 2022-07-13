@@ -4,8 +4,7 @@ import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import App from './App.vue'
 import PrimeVue from 'primevue/config'
 import { router } from './router'
-import { initializeApp, getApp } from 'firebase/app'
-import { firebaseConfig } from './firebase'
+import { initFirebase } from './firebase'
 
 import { primeVueComponents } from '@/components/primevue'
 import Ripple from 'primevue/ripple'
@@ -27,7 +26,8 @@ for (const item of primeVueComponents) {
   app.component(item.name, item.component)
 }
 
-initializeApp(firebaseConfig)
+initFirebase()
+
 app.use(pinia)
 app.use(router)
 app.mount('#app')
