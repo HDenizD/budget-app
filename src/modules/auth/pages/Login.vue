@@ -52,6 +52,8 @@
       <p-button
         class="w-full mt-2 p-button-success"
         label="Login"
+        iconPos="right"
+        :loading="isLoading"
         @click="login"
       />
     </template>
@@ -73,10 +75,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuth } from '@/stores'
 import { authValidator } from '@/utils/form/validators'
+import { FirebaseError } from '@firebase/util'
 
 const router = useRouter()
 const authStore = useAuth()
@@ -86,6 +89,8 @@ const loginCredentials = ref({
   password: 'test1234',
   keepMeLoggedIn: false,
 })
+
+const isLoading = ref(false)
 
 const isUsernameEmpty = computed(() => {
   return loginCredentials.value.username.length === 0
@@ -114,13 +119,18 @@ function validate() {
 }
 
 function login() {
-  validate().then(() => {
-    authStore.login(
-      loginCredentials.value.username,
-      loginCredentials.value.password,
-      loginCredentials.value.keepMeLoggedIn
-    )
-    router.push('/dashboard')
+  validate().then(async () => {
+    isLoading.value = true
+    await authStore
+      .login(
+        loginCredentials.value.username,
+        loginCredentials.value.password,
+        loginCredentials.value.keepMeLoggedIn
+      )
+      .then(() => {
+        router.push('/dashboard')
+      })
+    isLoading.value = false
   })
 }
 </script>

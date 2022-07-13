@@ -6,6 +6,7 @@ import {
   onAuthStateChanged,
   signOut,
 } from 'firebase/auth'
+import { FirebaseError } from '@firebase/util'
 
 export const useAuth = defineStore('auth', {
   state: () => {
@@ -27,13 +28,13 @@ export const useAuth = defineStore('auth', {
         this.authCheckDone = true
       })
     },
-    login(username: string, password: string, keepMeLoggedIn: boolean) {
-      signInWithEmailAndPassword(this.auth, username, password)
+    async login(username: string, password: string, keepMeLoggedIn: boolean) {
+      return signInWithEmailAndPassword(this.auth, username, password)
         .then(() => {
           this.isLoggedIn = true
         })
-        .catch((err) => {
-          console.log(err)
+        .catch((err: FirebaseError) => {
+          console.log(err.message)
         })
     },
     async logout() {
