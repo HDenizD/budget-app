@@ -4,7 +4,7 @@
       <slot name="title" />
     </template>
     <template #content>
-      <slot name="content" />s
+      <slot name="content" />
     </template>
     <template #footer>
       <slot name="footer" />
