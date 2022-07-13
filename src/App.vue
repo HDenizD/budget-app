@@ -1,24 +1,32 @@
 <template>
-  <menubar />
-  <div v-if="authStore.isLoggedIn" class="main">
-    <router-view />
-  </div>
-  <div v-else class="main">
-    <router-view name="auth" />
+  <div v-if="authStore.authCheckDone">
+    <menubar />
+    <div v-if="authStore.isLoggedIn" class="main">
+      <router-view />
+    </div>
+    <div v-else class="main">
+      <router-view name="auth" />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onBeforeMount, watch } from 'vue'
 import { useAuth } from './stores'
 import Menubar from '@/components/Menubar.vue'
+import { router } from './router'
 
 const authStore = useAuth()
-const authCheckDone = ref(false)
 
-onMounted(() => {
+watch(
+  () => authStore.isLoggedIn,
+  () => {
+    router.push('/dashboard')
+  }
+)
+
+onBeforeMount(() => {
   authStore.authCheck()
-  authCheckDone.value = true
 })
 </script>
 

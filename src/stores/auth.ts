@@ -12,24 +12,21 @@ export const useAuth = defineStore('auth', {
     return {
       isLoggedIn: false,
       auth: getAuth(),
+      authCheckDone: false,
     }
   },
   getters: {},
   actions: {
     authCheck() {
-      onAuthStateChanged(this.auth, (user) => {
-        if (user) {
-          // User is signed in, see docs for a list of available properties
-          // https://firebase.google.com/docs/reference/js/firebase.User
-          // const uid = user.uid
-          console.log(user)
-          this.isLoggedIn = true
-          // ...
-        } else {
-          // User is signed out
-          this.isLoggedIn = false
-          // ...
-        }
+      new Promise(() => {
+        onAuthStateChanged(this.auth, (user) => {
+          if (user) {
+            this.isLoggedIn = true
+          } else {
+            this.isLoggedIn = false
+          }
+          this.authCheckDone = true
+        })
       })
     },
     login(username: string, password: string, keepMeLoggedIn: boolean) {
@@ -43,11 +40,12 @@ export const useAuth = defineStore('auth', {
     },
     logout() {
       console.log('logout')
-      signOut(getAuth())
-      this.isLoggedIn = false
+      signOut(getAuth()).then(() => {
+        this.isLoggedIn = false
+      })
     },
     register() {
-      return createUserWithEmailAndPassword(
+      createUserWithEmailAndPassword(
         this.auth,
         'test@lala.de',
         'test1234'
