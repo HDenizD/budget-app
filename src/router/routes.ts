@@ -1,24 +1,30 @@
 import { RouteRecordRaw } from 'vue-router'
-import Main from '../pages/Main.vue'
+import Dashboard from '../pages/Dashboard.vue'
 import PrivacyPolicy from '@/pages/PrivacyPolicy.vue'
 import Imprint from '@/pages/Imprint.vue'
+import ExpensesWizard from '@/pages/ExpensesWizard.vue'
 import { authRoutes } from './../modules/auth/routes'
 
 export const routes: RouteRecordRaw[] = [
   {
     path: '/dashboard',
     meta: { requiresAuth: true },
-    component: Main,
+    component: Dashboard,
   },
   {
     path: '/statistics',
     meta: { requiresAuth: true },
-    component: Main,
+    component: Dashboard,
   },
   {
     path: '/settings',
     meta: { requiresAuth: true },
-    component: Main,
+    component: Dashboard,
+  },
+  {
+    path: '/expenses-wizard',
+    meta: { requiresAuth: true },
+    component: ExpensesWizard,
   },
   {
     path: '/privacy-policy',

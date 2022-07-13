@@ -5,6 +5,7 @@ import TabMenu from 'primevue/tabmenu'
 import InputText from 'primevue/inputtext'
 import Checkbox from 'primevue/checkbox'
 import Password from 'primevue/password'
+import Steps from 'primevue/steps'
 
 type PrimeVueComponents = {
   name: string
@@ -27,3 +28,4 @@ installPrimeVueComponent('p-tab-menu', TabMenu)
 installPrimeVueComponent('p-input-text', InputText)
 installPrimeVueComponent('p-checkbox', Checkbox)
 installPrimeVueComponent('p-password', Password)
+installPrimeVueComponent('p-steps', Steps)

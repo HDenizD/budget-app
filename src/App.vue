@@ -1,6 +1,6 @@
 <template>
   <div v-if="authStore.authCheckDone">
-    <menubar />
+    <menubar class="mb-5" />
     <div v-if="authStore.isLoggedIn" class="main">
       <router-view />
     </div>
