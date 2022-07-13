@@ -6,6 +6,7 @@ import InputText from 'primevue/inputtext'
 import Checkbox from 'primevue/checkbox'
 import Password from 'primevue/password'
 import Steps from 'primevue/steps'
+import PanelMenu from 'primevue/panelmenu';
 
 type PrimeVueComponents = {
   name: string
@@ -29,3 +30,4 @@ installPrimeVueComponent('p-input-text', InputText)
 installPrimeVueComponent('p-checkbox', Checkbox)
 installPrimeVueComponent('p-password', Password)
 installPrimeVueComponent('p-steps', Steps)
+installPrimeVueComponent('p-panel-menu', PanelMenu)

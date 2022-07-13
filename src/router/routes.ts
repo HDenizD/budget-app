@@ -2,8 +2,8 @@ import { RouteRecordRaw } from 'vue-router'
 import Dashboard from '../pages/Dashboard.vue'
 import PrivacyPolicy from '@/pages/PrivacyPolicy.vue'
 import Imprint from '@/pages/Imprint.vue'
-import ExpensesWizard from '@/pages/ExpensesWizard.vue'
 import { authRoutes } from './../modules/auth/routes'
+import { expensesWizardRoutes } from './../modules/expensesWizard/routes'
 
 export const routes: RouteRecordRaw[] = [
   {
@@ -20,11 +20,6 @@ export const routes: RouteRecordRaw[] = [
     path: '/settings',
     meta: { requiresAuth: true },
     component: Dashboard,
-  },
-  {
-    path: '/expenses-wizard',
-    meta: { requiresAuth: true },
-    component: ExpensesWizard,
   },
   {
     path: '/privacy-policy',
@@ -44,4 +39,4 @@ export const routes: RouteRecordRaw[] = [
   },
 ]
 
-routes.push(...authRoutes)
+routes.push(...authRoutes, ...expensesWizardRoutes)
