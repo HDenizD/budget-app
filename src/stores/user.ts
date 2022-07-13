@@ -3,9 +3,11 @@ import { defineStore } from 'pinia'
 export const useUser = defineStore('user', {
   state: () => {
     return {
-      hasNoData: true,
+      userHasNoExpenses: true,
+      expensesWizardWasSkipped: false,
     }
   },
   getters: {},
   actions: {},
+  // persist: true,
 })

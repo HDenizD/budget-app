@@ -13,6 +13,7 @@
           icon="pi pi-times"
           class="p-button-secondary"
           label="no, thanks. I'll do it later"
+          @click="$emit('skip-expenses-wizard')"
         />
         <p-button
           icon="pi pi-check"

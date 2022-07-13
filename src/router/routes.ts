@@ -2,6 +2,7 @@ import { RouteRecordRaw } from 'vue-router'
 import Dashboard from '../pages/Dashboard.vue'
 import PrivacyPolicy from '@/pages/PrivacyPolicy.vue'
 import Imprint from '@/pages/Imprint.vue'
+import PageNotFound from '@/pages/PageNotFound.vue'
 import { authRoutes } from './../modules/auth/routes'
 import { expensesWizardRoutes } from './../modules/expensesWizard/routes'
 
@@ -37,6 +38,7 @@ export const routes: RouteRecordRaw[] = [
       auth: Imprint,
     },
   },
+  { path: '/:pathMatch(.*)*', name: 'PageNotFound', component: PageNotFound },
 ]
 
 routes.push(...authRoutes, ...expensesWizardRoutes)
