@@ -8,7 +8,6 @@ export const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  // FIXME: routeGuard issue
   const authStore = useAuth()
   if (authStore.isLoggedIn && to.path === '/') {
     next('/dashboard')

@@ -18,15 +18,13 @@ export const useAuth = defineStore('auth', {
   getters: {},
   actions: {
     authCheck() {
-      new Promise(() => {
-        onAuthStateChanged(this.auth, (user) => {
-          if (user) {
-            this.isLoggedIn = true
-          } else {
-            this.isLoggedIn = false
-          }
-          this.authCheckDone = true
-        })
+      onAuthStateChanged(this.auth, (user) => {
+        if (user) {
+          this.isLoggedIn = true
+        } else {
+          this.isLoggedIn = false
+        }
+        this.authCheckDone = true
       })
     },
     login(username: string, password: string, keepMeLoggedIn: boolean) {
