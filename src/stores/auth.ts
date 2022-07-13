@@ -12,14 +12,13 @@ export const useAuth = defineStore('auth', {
   state: () => {
     return {
       isLoggedIn: false,
-      auth: getAuth(),
       authCheckDone: false,
     }
   },
   getters: {},
   actions: {
     authCheck() {
-      onAuthStateChanged(this.auth, (user) => {
+      onAuthStateChanged(getAuth(), (user) => {
         if (user) {
           this.isLoggedIn = true
         } else {
@@ -29,7 +28,7 @@ export const useAuth = defineStore('auth', {
       })
     },
     async login(username: string, password: string, keepMeLoggedIn: boolean) {
-      return signInWithEmailAndPassword(this.auth, username, password)
+      return signInWithEmailAndPassword(getAuth(), username, password)
         .then(() => {
           this.isLoggedIn = true
         })
@@ -44,7 +43,7 @@ export const useAuth = defineStore('auth', {
     },
     register() {
       createUserWithEmailAndPassword(
-        this.auth,
+        getAuth(),
         'test@lala.de',
         'test1234'
       ).then(() => {
@@ -52,4 +51,5 @@ export const useAuth = defineStore('auth', {
       })
     },
   },
+  persist: true,
 })
