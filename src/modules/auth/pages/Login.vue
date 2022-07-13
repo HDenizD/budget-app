@@ -120,7 +120,6 @@ function login() {
       loginCredentials.value.password,
       loginCredentials.value.keepMeLoggedIn
     )
-    console.log('hier');
     router.push('/dashboard')
   })
 }

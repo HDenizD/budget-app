@@ -85,7 +85,7 @@ const items = ref([
   },
   {
     label: 'Login',
-    icon: 'logout',
+    icon: 'login',
     visible: () => isMobileMode.value && !authStore.isLoggedIn,
     to: '/',
   },
@@ -93,20 +93,14 @@ const items = ref([
     label: 'Logout',
     icon: 'logout',
     visible: () => isMobileMode.value && authStore.isLoggedIn,
-    command: () => {
-      authStore.logout()
-      router.push('/')
-    },
+    command: handleLogout,
   },
   {
     label: 'Logout',
     icon: 'logout',
     visible: () => !isMobileMode.value && authStore.isLoggedIn,
     style: 'position: absolute; right: 15px;',
-    command: () => {
-      authStore.logout()
-      router.push('/')
-    },
+    command: handleLogout,
   },
 ])
 
@@ -120,6 +114,12 @@ function handleMenubarMobileMode() {
 
 function isActive(to: string) {
   return to === route.fullPath
+}
+
+function handleLogout() {
+  authStore.logout().then(() => {
+    router.push('/')
+  })
 }
 
 onMounted(() => {

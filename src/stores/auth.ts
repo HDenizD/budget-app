@@ -36,9 +36,8 @@ export const useAuth = defineStore('auth', {
           console.log(err)
         })
     },
-    logout() {
-      console.log('logout')
-      signOut(getAuth()).then(() => {
+    async logout() {
+      return signOut(getAuth()).then(() => {
         this.isLoggedIn = false
       })
     },
