@@ -1,10 +1,10 @@
 <template>
   <div v-if="authStore.authCheckDone">
-    <menubar class="mb-5" />
-    <div v-if="authStore.isLoggedIn" class="main">
+    <menubar class="" />
+    <div v-if="authStore.isLoggedIn" class="main py-5 md:p-5 sm:px-1">
       <router-view />
     </div>
-    <div v-else class="main">
+    <div v-else class="main py-5 md:p-5 sm:px-1">
       <router-view name="auth" />
     </div>
   </div>

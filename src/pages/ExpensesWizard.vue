@@ -1,10 +1,14 @@
 <template>
+  <div class="mb-4">
+    <div class="text-4xl font-semibold mb-2">Expenses Wizard 🧙‍♂️</div>
+    <div>The Expenses Wizard helps you set up your expenses</div>
+  </div>
   <p-tab-menu :model="items" />
   <router-view />
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 
 const router = useRouter()
@@ -28,6 +32,15 @@ const items = ref([
     to: '/expenses-wizard/step4',
   },
 ])
+
+watch(
+  () => route.fullPath,
+  () => {
+    if (route.fullPath === '/expenses-wizard') {
+      router.push('/expenses-wizard/step1')
+    }
+  }
+)
 
 onMounted(() => {
   if (route.fullPath === '/expenses-wizard') {

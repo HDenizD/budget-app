@@ -1,10 +1,10 @@
 <template>
-  <p-card style="max-width: 650px" class="flex justify-content-center">
+  <p-card style="max-width: 650px" class="flex justify-content-center shadow-6">
     <template #title> It seems that you have no expenses yet 🤷</template>
     <template #content>
       <div class="font-semibold">
         would you like to run the
-        <span class="font-bold font-italic">"expenses wizard"</span> ?
+        <span class="font-bold font-italic">"Expenses Wizard"</span> ?
       </div>
     </template>
     <template #footer>
