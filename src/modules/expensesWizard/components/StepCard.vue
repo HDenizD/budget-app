@@ -1,5 +1,5 @@
 <template>
-  <p-card>
+  <p-card class="p-3">
     <template #title>
       <slot name="title" />
     </template>

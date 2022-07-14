@@ -20,7 +20,7 @@ const route = useRoute()
 
 const items = ref([
   {
-    label: 'Step1',
+    label: 'About\u00A0you',
     to: '/expenses-wizard/step1',
   },
   {

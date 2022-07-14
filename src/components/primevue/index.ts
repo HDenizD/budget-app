@@ -6,7 +6,9 @@ import InputText from 'primevue/inputtext'
 import Checkbox from 'primevue/checkbox'
 import Password from 'primevue/password'
 import Steps from 'primevue/steps'
-import PanelMenu from 'primevue/panelmenu';
+import PanelMenu from 'primevue/panelmenu'
+import CascadeSelect from 'primevue/cascadeselect'
+import Dropdown from 'primevue/dropdown'
 
 type PrimeVueComponents = {
   name: string
@@ -31,3 +33,5 @@ installPrimeVueComponent('p-checkbox', Checkbox)
 installPrimeVueComponent('p-password', Password)
 installPrimeVueComponent('p-steps', Steps)
 installPrimeVueComponent('p-panel-menu', PanelMenu)
+installPrimeVueComponent('p-cascade-select', CascadeSelect)
+installPrimeVueComponent('p-dropdown', Dropdown)
