@@ -5,19 +5,19 @@
       <div>
         <div class="grid m-0" style="max-width: 400px; row-gap: 10px">
           <p-input-text
-            v-model="aboutYouData.firstname"
+            v-model="userStore.user.firstname"
             class="w-full"
             type="text"
             placeholder="Firstname"
           />
           <p-input-text
-            v-model="aboutYouData.lastname"
+            v-model="userStore.user.lastname"
             class="w-full"
             type="text"
             placeholder="Lastname"
           />
           <p-dropdown
-            v-model="aboutYouData.selectedCurrency"
+            v-model="userStore.user.selectedCurrency"
             class="w-full"
             :options="currencies"
             optionLabel="label"
@@ -26,13 +26,13 @@
           />
           <div class="p-inputgroup">
             <p-input-text
-              v-model="aboutYouData.income"
+              v-model="userStore.user.income"
               class="w-full"
               type="number"
               placeholder="Income"
             />
             <span class="p-inputgroup-addon">{{
-              aboutYouData.selectedCurrency || '?'
+              userStore.user.selectedCurrency || '?'
             }}</span>
           </div>
         </div>
@@ -43,7 +43,6 @@
         <p-button
           class="p-button-success"
           label="Next Step"
-          :disabled="!aboutYouDataIsValid"
           @click="$emit('next-step')"
         />
       </div>
@@ -52,31 +51,11 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
+import { useUser } from '@/stores'
 import StepCard from './StepCard.vue'
 
-type AboutYouData = {
-  firstname: string
-  lastname: string
-  selectedCurrency: string
-  income: number | null
-}
-
-const aboutYouData = ref<AboutYouData>({
-  firstname: '',
-  lastname: '',
-  income: null,
-  selectedCurrency: '',
-})
-
-const aboutYouDataIsValid = computed(() => {
-  return (
-    aboutYouData.value.firstname.length > 0 &&
-    aboutYouData.value.lastname.length > 0 &&
-    aboutYouData.value.income !== null &&
-    aboutYouData.value.selectedCurrency.length > 0
-  )
-})
+const userStore = useUser()
 
 const currencies = ref([
   {

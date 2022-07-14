@@ -5,6 +5,12 @@ export const useUser = defineStore('user', {
     return {
       userHasNoExpenses: true,
       expensesWizardWasSkipped: false,
+      user: {
+        firstname: '',
+        lastname: '',
+        income: null,
+        selectedCurrency: '',
+      },
     }
   },
   getters: {},
