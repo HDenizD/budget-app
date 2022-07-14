@@ -1,7 +1,11 @@
 <template>
   <div class="mb-4">
     <div class="text-4xl font-semibold mb-2">Expenses Wizard 🧙‍♂️</div>
-    <div>The Expenses Wizard helps you set up your expenses</div>
+    <div>
+      The Expenses Wizard helps you set up your expenses.
+      <br />
+      Just fill out the formula and click on "Next Step" to proceed.
+    </div>
   </div>
   <p-tab-menu :model="items" />
   <router-view />
