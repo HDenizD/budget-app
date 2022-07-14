@@ -1,6 +1,6 @@
 import ExpensesWizard from '@/pages/ExpensesWizard.vue'
 import AboutYou from '@/modules/expensesWizard/components/AboutYou.vue'
-import Step2 from '@/modules/expensesWizard/components/Step2.vue'
+import Expenses from '@/modules/expensesWizard/components/Expenses.vue'
 import Step3 from '@/modules/expensesWizard/components/Step3.vue'
 import Step4 from '@/modules/expensesWizard/components/Step4.vue'
 import { RouteRecordRaw } from 'vue-router'
@@ -17,9 +17,9 @@ export const expensesWizardRoutes: RouteRecordRaw[] = [
         component: AboutYou,
       },
       {
-        path: 'step2',
+        path: 'expenses',
         meta: { requiresAuth: true },
-        component: Step2,
+        component: Expenses,
       },
       {
         path: 'step3',
