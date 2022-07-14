@@ -27,10 +27,10 @@ const currentStepIndex = ref(0)
 const items = ref<StepItems>([
   {
     label: 'About\u00A0you',
-    to: '/expenses-wizard/step1',
+    to: '/expenses-wizard/about-you',
   },
   {
-    label: 'Step2',
+    label: 'Expenses',
     to: '/expenses-wizard/step2',
   },
   {
@@ -47,7 +47,7 @@ watch(
   () => route.fullPath,
   () => {
     if (route.fullPath === '/expenses-wizard') {
-      router.push('/expenses-wizard/step1')
+      router.push('/expenses-wizard/about-you')
     }
   }
 )
@@ -65,7 +65,7 @@ function stepper(direction: 'next' | 'prev') {
 
 onMounted(() => {
   if (route.fullPath === '/expenses-wizard') {
-    router.push('/expenses-wizard/step1')
+    router.push('/expenses-wizard/about-you')
   }
 
   currentStepIndex.value = items.value.findIndex(

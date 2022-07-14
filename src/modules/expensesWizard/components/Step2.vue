@@ -1,6 +1,6 @@
 <template>
   <step-card>
-    <template #title>Step 2</template>
+    <template #title>Expenses</template>
     <template #content>
       <div>placeholder</div>
     </template>
