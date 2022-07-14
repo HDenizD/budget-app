@@ -9,6 +9,7 @@ import Steps from 'primevue/steps'
 import PanelMenu from 'primevue/panelmenu'
 import CascadeSelect from 'primevue/cascadeselect'
 import Dropdown from 'primevue/dropdown'
+import OrderList from 'primevue/orderlist'
 
 type PrimeVueComponents = {
   name: string
@@ -35,3 +36,4 @@ installPrimeVueComponent('p-steps', Steps)
 installPrimeVueComponent('p-panel-menu', PanelMenu)
 installPrimeVueComponent('p-cascade-select', CascadeSelect)
 installPrimeVueComponent('p-dropdown', Dropdown)
+installPrimeVueComponent('p-order-list', OrderList)

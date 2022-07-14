@@ -2,8 +2,9 @@
   <step-card>
     <!-- <template #title>Expenses</template> -->
     <template #content>
-      <div class="flex justify-content-center">
+      <div>
         <add-expense />
+        <expense-item />
       </div>
     </template>
     <template #footer>
@@ -26,6 +27,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import AddExpense from './AddExpense.vue'
+import ExpenseItem from './ExpenseItem.vue'
 import StepCard from './StepCard.vue'
 </script>
 

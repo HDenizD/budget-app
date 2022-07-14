@@ -1,5 +1,5 @@
 <template>
-  <div class="p-inputgroup" style="max-width: 600px">
+  <div class="p-inputgroup m-auto" style="max-width: 600px">
     <p-input-text
       v-model="expense.description"
       placeholder="For what?"
