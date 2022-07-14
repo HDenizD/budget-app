@@ -1,12 +1,28 @@
 <template>
   <step-card>
-    <template #title>Step2</template>
-    <template #content>content</template>
-    <template #footer>footer</template>
+    <template #title>Step 2</template>
+    <template #content>
+      <div>placeholder</div>
+    </template>
+    <template #footer>
+      <div class="flex justify-content-between">
+        <p-button
+          class="p-button-secondary"
+          label="Prev Step"
+          @click="$emit('prev-step')"
+        />
+        <p-button
+          class="p-button-success"
+          label="Next Step"
+          @click="$emit('next-step')"
+        />
+      </div>
+    </template>
   </step-card>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import StepCard from './StepCard.vue'
 </script>
 

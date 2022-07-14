@@ -2,7 +2,20 @@
   <step-card>
     <template #title>Step3</template>
     <template #content>content</template>
-    <template #footer>footer</template>
+    <template #footer>
+      <div class="flex justify-content-between">
+        <p-button
+          class="p-button-secondary"
+          label="Prev Step"
+          @click="$emit('prev-step')"
+        />
+        <p-button
+          class="p-button-success"
+          label="Next Step"
+          @click="$emit('next-step')"
+        />
+      </div>
+    </template>
   </step-card>
 </template>
 

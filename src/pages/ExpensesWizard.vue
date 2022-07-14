@@ -8,7 +8,7 @@
     </div>
   </div>
   <p-tab-menu :model="items" />
-  <router-view />
+  <router-view @next-step="stepper('next')" @prev-step="stepper('prev')" />
 </template>
 
 <script setup lang="ts">
@@ -18,7 +18,13 @@ import { useRouter, useRoute } from 'vue-router'
 const router = useRouter()
 const route = useRoute()
 
-const items = ref([
+type StepItems = {
+  label: string
+  to: string
+}[]
+
+const currentStepIndex = ref(0)
+const items = ref<StepItems>([
   {
     label: 'About\u00A0you',
     to: '/expenses-wizard/step1',
@@ -46,10 +52,25 @@ watch(
   }
 )
 
+function stepper(direction: 'next' | 'prev') {
+  let currentStepIndex = items.value.findIndex(
+    (item) => item.to === route.fullPath
+  )
+
+  if (direction === 'next') currentStepIndex++
+  if (direction === 'prev') currentStepIndex--
+
+  router.push(items.value[currentStepIndex]?.to)
+}
+
 onMounted(() => {
   if (route.fullPath === '/expenses-wizard') {
     router.push('/expenses-wizard/step1')
   }
+
+  currentStepIndex.value = items.value.findIndex(
+    (item) => item.to === route.fullPath
+  )
 })
 </script>
 
