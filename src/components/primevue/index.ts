@@ -10,6 +10,10 @@ import PanelMenu from 'primevue/panelmenu'
 import CascadeSelect from 'primevue/cascadeselect'
 import Dropdown from 'primevue/dropdown'
 import OrderList from 'primevue/orderlist'
+import DataTable from 'primevue/datatable'
+import Column from 'primevue/column'
+import ColumnGroup from 'primevue/columngroup' //optional for column grouping
+import Row from 'primevue/row' //optional for row
 
 type PrimeVueComponents = {
   name: string
@@ -36,4 +40,7 @@ installPrimeVueComponent('p-steps', Steps)
 installPrimeVueComponent('p-panel-menu', PanelMenu)
 installPrimeVueComponent('p-cascade-select', CascadeSelect)
 installPrimeVueComponent('p-dropdown', Dropdown)
-installPrimeVueComponent('p-order-list', OrderList)
+installPrimeVueComponent('p-data-table', DataTable)
+installPrimeVueComponent('p-column', Column)
+installPrimeVueComponent('p-column-group', ColumnGroup)
+installPrimeVueComponent('p-row', Row)

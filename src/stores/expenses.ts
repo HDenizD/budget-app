@@ -1,8 +1,10 @@
 import { defineStore } from 'pinia'
+import { v4 as uuidv4 } from 'uuid';
 
 export type Expense = {
   description: string
-  amount: number | null
+  amount: number | null,
+  uuid?: string
 }
 
 export const useExpenses = defineStore('expenses', {
@@ -17,6 +19,7 @@ export const useExpenses = defineStore('expenses', {
       this.expenses.push({
         description: expense.description,
         amount: expense.amount,
+        uuid: uuidv4()
       })
     },
   },
