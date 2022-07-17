@@ -56,6 +56,13 @@
         :loading="isLoading"
         @click="login"
       />
+      <p-button
+        class="w-full mt-3 p-button-danger"
+        label="Sign in with Google"
+        icon="pi pi-google"
+        :loading="isLoadingGoogle"
+        @click="loginWithGoogle"
+      />
     </template>
     <template #footer>
       <div class="flex justify-content-between">
@@ -91,6 +98,7 @@ const loginCredentials = ref({
 })
 
 const isLoading = ref(false)
+const isLoadingGoogle = ref(false)
 
 const isUsernameEmpty = computed(() => {
   return loginCredentials.value.username.length === 0
@@ -116,6 +124,15 @@ function validate() {
     }
     resolve(true)
   })
+}
+
+async function loginWithGoogle() {
+  isLoadingGoogle.value = true
+  await authStore.loginWithGoogle().then(() => {
+    router.push('/dashboard')
+  })
+  isLoadingGoogle.value = false
+
 }
 
 function login() {

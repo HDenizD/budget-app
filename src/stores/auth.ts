@@ -3,8 +3,10 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signInWithPopup,
   onAuthStateChanged,
   signOut,
+  GoogleAuthProvider,
 } from 'firebase/auth'
 import { FirebaseError } from '@firebase/util'
 
@@ -26,6 +28,16 @@ export const useAuth = defineStore('auth', {
         }
         this.authCheckDone = true
       })
+    },
+    async loginWithGoogle() {
+      const provider = new GoogleAuthProvider()
+      return signInWithPopup(getAuth(), provider)
+        .then(() => {
+          this.isLoggedIn = true
+        })
+        .catch((err: FirebaseError) => {
+          console.log(err.message)
+        })
     },
     async login(username: string, password: string, keepMeLoggedIn: boolean) {
       return signInWithEmailAndPassword(getAuth(), username, password)
