@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vitest/config'
 import vue from '@vitejs/plugin-vue'
 // import { fileURLToPath, URL } from "url";
 const path = require('path');
@@ -12,6 +12,10 @@ export default defineConfig({
   },
   server: {
     host: true
+  },
+  test: {
+    globals: true,
+    environment: 'jsdom',
   },
   plugins: [vue()]
 })
