@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils'
 import Login from '@/modules/auth/pages/Login.vue'
 import { createTestingPinia } from '@pinia/testing'
 
-test('login with correct credentials', async () => {
+test.skip('login with correct credentials', async () => {
   // expect(Login).toBeTruthy();
   const wrapper = mount(Login, {
     global: {
