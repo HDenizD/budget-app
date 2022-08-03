@@ -1,9 +1,7 @@
 <template>
   <div class="flex justify-content-center">
-    <user-has-no-data
-      v-if="!userStore.expensesWizardWasSkipped && userStore.userHasNoExpenses"
-      @skip-expenses-wizard="userStore.expensesWizardWasSkipped = true"
-    />
+    <user-has-no-data v-if="userStore.userHasNoExpenses" class="test" />
+    <!-- @skip-expenses-wizard="userStore.expensesWizardWasSkipped = true" -->
   </div>
 </template>
 
