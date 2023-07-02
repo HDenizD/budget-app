@@ -4,7 +4,11 @@
     <template #content>
       <div>
         <add-expense />
-        <expense-item />
+        <expense-item
+          v-for="expense in expensesStore.expenses"
+          :key="expense.uuid"
+          :expenseData="expense"
+        />
       </div>
     </template>
     <template #footer>
@@ -26,9 +30,12 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useExpenses } from '@/stores/expenses'
 import AddExpense from './AddExpense.vue'
 import ExpenseItem from './ExpenseItem.vue'
 import StepCard from './StepCard.vue'
+
+const expensesStore = useExpenses()
 </script>
 
 <style scoped lang="scss"></style>
