@@ -11,9 +11,9 @@
 </template>
 
 <script setup lang="ts">
+import Menubar from '@/components/MenuBar.vue'
 import { onBeforeMount, watch } from 'vue'
 import { useAuth } from './stores'
-import Menubar from '@/components/Menubar.vue'
 import { router } from './router'
 
 const authStore = useAuth()

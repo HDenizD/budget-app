@@ -9,7 +9,7 @@ import { initFirebase } from './firebase'
 import { primeVueComponents } from '@/components/primevue'
 import Ripple from 'primevue/ripple'
 
-import 'primevue/resources/themes/lara-dark-blue/theme.css'
+import 'primevue/resources/themes/lara-dark-purple/theme.css'
 import 'primevue/resources/primevue.min.css'
 import 'primeicons/primeicons.css'
 import 'primeflex/primeflex.css'
