@@ -13,13 +13,25 @@ export type User = {
   firstname: string
   lastname: string
   income: number | null
-  selectedCurrency: '€' | '$' | ''
+  currency: '€' | '$' | ''
 }
 
 interface UserStore {
   userHasNoExpenses: boolean
   expensesWizardWasSkipped: boolean
-  user: User
+  currentUser: User
+}
+
+// TODO: possible implementation of the user store
+const currentUser = {
+  id: '',
+  hasNoExpenses: true,
+  expensesWizardWasSkipped: false,
+  firstname: '',
+  lastname: '',
+  income: null,
+  currency: '',
+  expenses: [],
 }
 
 export const useUser = defineStore('user', {
@@ -27,11 +39,18 @@ export const useUser = defineStore('user', {
     return {
       userHasNoExpenses: true,
       expensesWizardWasSkipped: false,
-      user: {
+      currentUser: {
         firstname: '',
         lastname: '',
         income: null,
-        selectedCurrency: '',
+        currency: '',
+        permissions: [
+          {
+            userId: '',
+            read: true,
+            write: true,
+          }
+        ]
       },
     } as UserStore
   },
@@ -55,6 +74,7 @@ export const useUser = defineStore('user', {
       return setDoc(doc(db, 'users', 'myId'), user)
         .then((res) => {
           console.log(res)
+          this.currentUser = user
         })
         .catch((err) => {
           console.log(err)

@@ -34,7 +34,7 @@ const items = ref<StepItems>([
     to: '/expenses-wizard/expenses',
   },
   {
-    label: 'Step3',
+    label: 'Household',
     to: '/expenses-wizard/step3',
   },
   {

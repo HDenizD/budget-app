@@ -1,53 +1,59 @@
 <template>
-  <step-card>
-    <!-- <template #title> About you</template> -->
-    <template #content>
-      <div>
-        <div class="grid m-0" style="max-width: 400px; row-gap: 10px">
-          <p-input-text
-            v-model="userData.firstname"
-            class="w-full"
-            type="text"
-            placeholder="Firstname"
-          />
-          <p-input-text
-            v-model="userData.lastname"
-            class="w-full"
-            type="text"
-            placeholder="Lastname"
-          />
-          <p-dropdown
-            v-model="userData.selectedCurrency"
-            class="w-full"
-            :options="currencies"
-            optionLabel="label"
-            optionValue="value"
-            placeholder="Select your currency"
-          />
-          <div class="p-inputgroup">
+  <form @submit="onSubmit">
+    <step-card>
+      <!-- <template #title> About you</template> -->
+      <template #content>
+        <div>
+          <div class="grid m-0" style="max-width: 400px; row-gap: 10px">
             <p-input-text
-              v-model="userData.income"
+              v-model="userData.firstname"
               class="w-full"
-              type="number"
-              placeholder="Income"
+              type="text"
+              required
+              placeholder="Firstname"
             />
-            <span class="p-inputgroup-addon">{{
-              userData.selectedCurrency || '?'
-            }}</span>
+            <p-input-text
+              v-model="userData.lastname"
+              class="w-full"
+              type="text"
+              required
+              placeholder="Lastname"
+            />
+            <p-dropdown
+              v-model="userData.currency"
+              class="w-full"
+              :options="currencies"
+              optionLabel="label"
+              optionValue="value"
+              placeholder="Select your currency"
+              required
+            />
+            <div class="p-inputgroup">
+              <p-input-text
+                v-model="userData.income"
+                class="w-full"
+                type="number"
+                required
+                placeholder="Income"
+              />
+              <span class="p-inputgroup-addon">{{
+                userData.currency || '?'
+              }}</span>
+            </div>
           </div>
         </div>
-      </div>
-    </template>
-    <template #footer>
-      <div class="flex justify-content-end">
-        <p-button
-          class="p-button-success"
-          label="Next Step"
-          @click="createNewUser"
-        />
-      </div>
-    </template>
-  </step-card>
+      </template>
+      <template #footer>
+        <div class="flex justify-content-end">
+          <p-button
+            type="submit"
+            class="p-button-success"
+            label="Next Step"
+          />
+        </div>
+      </template>
+    </step-card>
+  </form>
 </template>
 
 <script setup lang="ts">
@@ -56,7 +62,7 @@ import { useUser } from '@/stores'
 import StepCard from './StepCard.vue'
 import { User } from '@/stores/user'
 
-function createNewUser() {
+function onSubmit() {
   userStore
     .createNewUser(userData.value)
     .then(() => {
@@ -74,7 +80,7 @@ const userData = ref<User>({
   firstname: '',
   lastname: '',
   income: null,
-  selectedCurrency: '',
+  currency: '',
 })
 
 const currencies = ref([

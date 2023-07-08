@@ -5,6 +5,7 @@ export type Expense = {
   description: string
   amount: number | null
   uuid?: string
+  userId?: string
 }
 
 export const useExpenses = defineStore('expenses', {
@@ -14,6 +15,9 @@ export const useExpenses = defineStore('expenses', {
     }
   },
   getters: {
+    allExpensesByUserId: (state) => (userId: string) => {
+      return state.expenses.filter((expense) => expense.userId === userId)
+    },
     // getAllExpenses: (state) => {
     //   return state.expenses
     // },
