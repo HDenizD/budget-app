@@ -15,6 +15,7 @@ export const useAuth = defineStore('auth', {
     return {
       isLoggedIn: false,
       authCheckDone: false,
+      activeUserId: '',
     }
   },
   getters: {},
@@ -23,8 +24,10 @@ export const useAuth = defineStore('auth', {
       onAuthStateChanged(getAuth(), (user) => {
         if (user) {
           this.isLoggedIn = true
+          this.activeUserId = getAuth().currentUser?.uid || ''
         } else {
           this.isLoggedIn = false
+          this.activeUserId = ''
         }
         this.authCheckDone = true
       })
@@ -34,6 +37,7 @@ export const useAuth = defineStore('auth', {
       return signInWithPopup(getAuth(), provider)
         .then(() => {
           this.isLoggedIn = true
+          this.activeUserId = getAuth().currentUser?.uid || ''
         })
         .catch((err: FirebaseError) => {
           console.log(err.message)
@@ -51,6 +55,7 @@ export const useAuth = defineStore('auth', {
     async logout() {
       return signOut(getAuth()).then(() => {
         this.isLoggedIn = false
+        this.activeUserId = ''
       })
     },
     register() {
@@ -63,5 +68,5 @@ export const useAuth = defineStore('auth', {
       })
     },
   },
-  persist: true,
+  // persist: true,
 })

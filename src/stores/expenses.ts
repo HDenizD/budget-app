@@ -27,5 +27,5 @@ export const useExpenses = defineStore('expenses', {
       })
     },
   },
-  persist: true,
+  // persist: true,
 })

@@ -1,6 +1,7 @@
 <template>
   <div v-if="authStore.authCheckDone">
     <menubar class="" />
+    {{ authStore.activeUserId }}
     <div v-if="authStore.isLoggedIn" class="main py-5 md:p-5 sm:px-1">
       <router-view />
     </div>
@@ -15,6 +16,9 @@ import Menubar from '@/components/MenuBar.vue'
 import { onBeforeMount, watch } from 'vue'
 import { useAuth } from './stores'
 import { router } from './router'
+import { useUser } from './stores'
+
+const userStore = useUser()
 
 const authStore = useAuth()
 
@@ -27,6 +31,7 @@ watch(
 
 onBeforeMount(() => {
   authStore.authCheck()
+  userStore.getDataFromFirebase()
 })
 </script>
 

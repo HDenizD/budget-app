@@ -5,19 +5,19 @@
       <div>
         <div class="grid m-0" style="max-width: 400px; row-gap: 10px">
           <p-input-text
-            v-model="userStore.user.firstname"
+            v-model="userData.firstname"
             class="w-full"
             type="text"
             placeholder="Firstname"
           />
           <p-input-text
-            v-model="userStore.user.lastname"
+            v-model="userData.lastname"
             class="w-full"
             type="text"
             placeholder="Lastname"
           />
           <p-dropdown
-            v-model="userStore.user.selectedCurrency"
+            v-model="userData.selectedCurrency"
             class="w-full"
             :options="currencies"
             optionLabel="label"
@@ -26,13 +26,13 @@
           />
           <div class="p-inputgroup">
             <p-input-text
-              v-model="userStore.user.income"
+              v-model="userData.income"
               class="w-full"
               type="number"
               placeholder="Income"
             />
             <span class="p-inputgroup-addon">{{
-              userStore.user.selectedCurrency || '?'
+              userData.selectedCurrency || '?'
             }}</span>
           </div>
         </div>
@@ -43,7 +43,7 @@
         <p-button
           class="p-button-success"
           label="Next Step"
-          @click="$emit('next-step')"
+          @click="createNewUser"
         />
       </div>
     </template>
@@ -54,8 +54,28 @@
 import { ref } from 'vue'
 import { useUser } from '@/stores'
 import StepCard from './StepCard.vue'
+import { User } from '@/stores/user'
 
+function createNewUser() {
+  userStore
+    .createNewUser(userData.value)
+    .then(() => {
+      emit('next-step')
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
+
+const emit = defineEmits(['next-step'])
 const userStore = useUser()
+
+const userData = ref<User>({
+  firstname: '',
+  lastname: '',
+  income: null,
+  selectedCurrency: '',
+})
 
 const currencies = ref([
   {
