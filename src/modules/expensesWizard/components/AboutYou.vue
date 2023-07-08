@@ -1,10 +1,10 @@
 <template>
-  <form @submit="onSubmit">
+  <form @submit.prevent="onSubmit">
     <step-card>
       <!-- <template #title> About you</template> -->
       <template #content>
         <div>
-          <div class="grid m-0" style="max-width: 400px; row-gap: 10px">
+          <div class="grid m-0" style="max-width: 400px; row-gap: 10px w-full">
             <p-input-text
               v-model="userData.firstname"
               class="w-full"
@@ -28,6 +28,7 @@
               placeholder="Select your currency"
               required
             />
+            <small class="p-error" id="text-error">{{ errorMessage || '&nbsp;' }}</small>
             <div class="p-inputgroup">
               <p-input-text
                 v-model="userData.income"
@@ -45,11 +46,7 @@
       </template>
       <template #footer>
         <div class="flex justify-content-end">
-          <p-button
-            type="submit"
-            class="p-button-success"
-            label="Next Step"
-          />
+          <p-button type="submit" class="p-button-success" label="Next Step" />
         </div>
       </template>
     </step-card>
@@ -59,8 +56,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useUser } from '@/stores'
-import StepCard from './StepCard.vue'
 import { User } from '@/stores/user'
+import { useField, useForm } from 'vee-validate'
+import StepCard from './StepCard.vue'
 
 function onSubmit() {
   userStore
@@ -73,6 +71,8 @@ function onSubmit() {
     })
 }
 
+const { handleSubmit } = useForm()
+const { errorMessage } = useField('text')
 const emit = defineEmits(['next-step'])
 const userStore = useUser()
 
