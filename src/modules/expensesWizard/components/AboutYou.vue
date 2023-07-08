@@ -2,9 +2,9 @@
   <form @submit.prevent="onSubmit">
     <step-card>
       <!-- <template #title> About you</template> -->
-      <template #content>
-        <div>
-          <div class="grid m-0" style="max-width: 400px; row-gap: 10px w-full">
+      <template #content >
+        <div class="flex justify-content-center">
+          <div class="grid m-ß" style="max-width: 450px; row-gap: 10px">
             <p-input-text
               v-model="userData.firstname"
               class="w-full"
@@ -19,16 +19,18 @@
               required
               placeholder="Lastname"
             />
-            <p-dropdown
-              v-model="userData.currency"
-              class="w-full"
-              :options="currencies"
-              optionLabel="label"
-              optionValue="value"
-              placeholder="Select your currency"
-              required
-            />
-            <small class="p-error" id="text-error">{{ errorMessage || '&nbsp;' }}</small>
+            <div class="flex align-items-center w-full">
+              <p-dropdown
+                v-model="userData.currency"
+                class="w-full"
+                :options="currencies"
+                optionLabel="label"
+                optionValue="value"
+                placeholder="Select your currency"
+                required
+              />
+              <i class="p-error text-3xl pi pi-exclamation-triangle ml-2" />
+            </div>
             <div class="p-inputgroup">
               <p-input-text
                 v-model="userData.income"

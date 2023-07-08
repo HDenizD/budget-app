@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-content-center">
-    <user-has-no-data v-if="userStore.userHasNoExpenses" class="test" />
+    <user-has-no-data v-if="userStore.userHasNoExpenses" />
     <!-- @skip-expenses-wizard="userStore.expensesWizardWasSkipped = true" -->
   </div>
 </template>
