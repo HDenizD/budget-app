@@ -1,6 +1,12 @@
 import { defineStore } from 'pinia'
 import type { Expense } from './expenses'
-import { getFirestore, collection, getDocs, addDoc } from 'firebase/firestore'
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  doc,
+  setDoc,
+} from 'firebase/firestore'
 import type { DocumentData } from 'firebase/firestore'
 
 export type User = {
@@ -27,7 +33,7 @@ export const useUser = defineStore('user', {
         income: null,
         selectedCurrency: '',
       },
-    } as UserStore 
+    } as UserStore
   },
   getters: {},
   actions: {
@@ -45,12 +51,14 @@ export const useUser = defineStore('user', {
     },
     async createNewUser(user: User) {
       const db = getFirestore()
-      const usersRef = collection(db, 'users')
-
-      return addDoc(usersRef, user).then((docRef) => {
-        console.log(docRef);
-        this.user = user
-      })
+      // this is how you add a new document to a collection with custom id
+      return setDoc(doc(db, 'users', 'myId'), user)
+        .then((res) => {
+          console.log(res)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     },
   },
   // persist: true,
